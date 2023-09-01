@@ -19,11 +19,6 @@ app.use(express.static(publicDirectoryPath));
 app.get("", (req, res) => {
   res.render("index", { title: "Weather", name: "Divyansh Choukse" });
 });
-
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About Me", name: "Divyansh Choukse" });
-});
-
 app.get("/weather", (req, res) => {
   if (!req.query.address) {
     return res.send({
