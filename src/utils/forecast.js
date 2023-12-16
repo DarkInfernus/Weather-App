@@ -1,8 +1,10 @@
 const request = require("request");
-require("dotenv").config()
+require("dotenv").config();
 const forecast = (latitude, longitude, callback) => {
   const url =
-    "http://api.weatherstack.com/current?access_key="+process.env.WEATHER_API_KEY+"&query=" +
+    "http://api.weatherstack.com/current?access_key=" +
+    process.env.WEATHER_API_KEY +
+    "&query=" +
     longitude +
     "," +
     latitude;
@@ -14,7 +16,7 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       callback(
         undefined,
-        `${body.current.weather_descriptions[0]}.It is currently ${body.current.temperature} out there and considering the wind chill factor its feels like ${body.current.feelslike}`
+        `${body.current.weather_descriptions[0]}.It is currently ${body.current.temperature}°C out there and considering the wind chill factor its feels like ${body.current.feelslike}°C`
       );
     }
   });
