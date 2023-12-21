@@ -14,10 +14,12 @@ const forecast = (latitude, longitude, callback) => {
     } else if (body.success === false) {
       callback("Unable to find the location", undefined);
     } else {
-      callback(
-        undefined,
-        `${body.current.weather_descriptions[0]}.It is currently ${body.current.temperature}°C out there and considering the wind chill factor its feels like ${body.current.feelslike}°C`
-      );
+      let response;
+      if (body.current.temperature !== body.current.feelslike)
+        response = `${body.current.weather_descriptions[0]}.It is currently ${body.current.temperature}°C out there and considering the wind chill factor its feels like ${body.current.feelslike}°C`;
+      else
+        response = `${body.current.weather_descriptions[0]}.It is currently ${body.current.temperature}°C out there.`;
+      callback(undefined, response);
     }
   });
 };
